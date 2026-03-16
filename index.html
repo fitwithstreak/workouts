@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Fitness Tracker</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+body{
+font-family:system-ui,-apple-system,Segoe UI,Roboto;
+background:#0f172a;
+color:white;
+}
+
+/* HEADER */
+
+header{
+background:#020617;
+padding:18px;
+text-align:center;
+font-size:22px;
+font-weight:bold;
+position:sticky;
+top:0;
+z-index:10;
+}
+
+/* CONTAINER */
+
+.container{
+width:100%;
+max-width:900px;
+margin:auto;
+padding:20px;
+}
+
+/* SECTION TITLE */
+
+.sectionTitle{
+font-size:22px;
+margin:30px 0 16px 0;
+}
+
+/* WORKOUT BUTTONS */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+gap:12px;
+}
+
+.card{
+background:#1e293b;
+padding:16px;
+border-radius:10px;
+text-align:center;
+cursor:pointer;
+transition:0.2s;
+}
+
+.card:hover{
+background:#334155;
+transform:scale(1.05);
+}
+
+/* MUSCLE SECTION */
+
+.muscleSection{
+margin:40px 0;
+}
+
+/* MUSCLE CARD */
+
+.muscleCard{
+position:relative;
+border-radius:16px;
+overflow:hidden;
+cursor:pointer;
+margin-bottom:30px;
+}
+
+/* IMAGE */
+
+.muscleCard img{
+width:100%;
+height:340px;
+object-fit:contain;
+background:#020617;
+display:block;
+transition:0.4s;
+}
+
+/* IMAGE ZOOM */
+
+.muscleCard:hover img{
+transform:scale(1.05);
+}
+
+/* OVERLAY */
+
+.overlay{
+position:absolute;
+top:0;
+left:0;
+right:0;
+bottom:0;
+display:flex;
+align-items:center;
+justify-content:center;
+background:rgba(0,0,0,0.45);
+opacity:0;
+transition:0.3s;
+}
+
+/* SHOW ON DESKTOP HOVER */
+
+.muscleCard:hover .overlay{
+opacity:1;
+}
+
+/* SHOW WHEN TAPPED (MOBILE) */
+
+.muscleCard.active .overlay{
+opacity:1;
+}
+
+/* TITLE STYLE */
+
+.overlay h2{
+font-size:30px;
+letter-spacing:3px;
+background:rgba(0,0,0,0.6);
+padding:10px 30px;
+border-radius:10px;
+}
+
+.muscleCard a{
+text-decoration:none;
+color:white;
+display:block;
+}
+
+/* RECOVERY ROW */
+
+.row{
+display:flex;
+justify-content:space-between;
+background:#1e293b;
+padding:14px;
+border-radius:10px;
+margin-bottom:10px;
+}
+
+.ready{
+color:#22c55e;
+}
+
+.recover{
+color:#f59e0b;
+}
+
+/* HISTORY */
+
+.history{
+background:#1e293b;
+padding:14px;
+border-radius:10px;
+line-height:1.7;
+font-size:14px;
+}
+
+/* MOBILE */
+
+@media (max-width:600px){
+
+.muscleCard img{
+height:240px;
+}
+
+.overlay h2{
+font-size:22px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+Fitness Tracker
+</header>
+
+<div class="container">
+
+<!-- LOG WORKOUT -->
+
+<div class="sectionTitle">Log Workout</div>
+
+<div class="grid">
+
+<div class="card" onclick="logWorkout('Chest')">Chest</div>
+<div class="card" onclick="logWorkout('Back')">Back</div>
+<div class="card" onclick="logWorkout('Legs')">Legs</div>
+<div class="card" onclick="logWorkout('Shoulders')">Shoulders</div>
+<div class="card" onclick="logWorkout('Arms')">Arms</div>
+<div class="card" onclick="logWorkout('Abs')">Abs</div>
+
+</div>
+
+<!-- MUSCLE LIBRARY -->
+
+<div class="sectionTitle">Muscle Library</div>
+
+<!-- CHEST -->
+
+<div class="muscleCard" onclick="toggleCard(this,event)">
+<a href="chest.html">
+
+<img src="images/chest.png">
+
+<div class="overlay">
+<h2>CHEST</h2>
+</div>
+
+</a>
+</div>
+
+<!-- BACK -->
+
+<div class="muscleCard" onclick="toggleCard(this,event)">
+<a href="back.html">
+
+<img src="images/back.png">
+
+<div class="overlay">
+<h2>BACK</h2>
+</div>
+
+</a>
+</div>
+
+<!-- SHOULDERS -->
+
+<div class="muscleCard" onclick="toggleCard(this,event)">
+<a href="shoulders.html">
+
+<img src="images/shoulders.png">
+
+<div class="overlay">
+<h2>SHOULDERS</h2>
+</div>
+
+</a>
+</div>
+
+<!-- BICEPS -->
+
+<div class="muscleCard" onclick="toggleCard(this,event)">
+<a href="biceps.html">
+
+<img src="images/biceps.png">
+
+<div class="overlay">
+<h2>BICEPS</h2>
+</div>
+
+</a>
+</div>
+
+<!-- TRICEPS -->
+
+<div class="muscleCard" onclick="toggleCard(this,event)">
+<a href="triceps.html">
+
+<img src="images/triceps.png">
+
+<div class="overlay">
+<h2>TRICEPS</h2>
+</div>
+
+</a>
+</div>
+
+<!-- LEGS -->
+
+<div class="muscleCard" onclick="toggleCard(this,event)">
+<a href="legs.html">
+
+<img src="images/legs.png">
+
+<div class="overlay">
+<h2>LEGS</h2>
+</div>
+
+</a>
+</div>
+
+<!-- ABS -->
+
+<div class="muscleCard" onclick="toggleCard(this,event)">
+<a href="abs.html">
+
+<img src="images/abs.png">
+
+<div class="overlay">
+<h2>ABS</h2>
+</div>
+
+</a>
+</div>
+
+
+<!-- Streaching -->
+
+<div class="muscleCard" onclick="toggleCard(this,event)">
+<a href="streaching.html">
+
+<img src="images/streaching.png">
+
+<div class="overlay">
+<h2>STREACH</h2>
+</div>
+
+</a>
+</div>
+
+<!-- MUSCLE RECOVERY -->
+
+<div class="sectionTitle">Muscle Recovery</div>
+
+<div id="recovery"></div>
+
+<!-- HISTORY -->
+
+<div class="sectionTitle">Workout History</div>
+
+<div id="history" class="history"></div>
+
+</div>
+
+<script>
+
+let history=JSON.parse(localStorage.getItem("workoutHistory"))||[]
+
+const restDays={
+Chest:2,
+Back:2,
+Legs:3,
+Shoulders:2,
+Arms:2,
+Abs:1
+}
+
+/* LOG WORKOUT */
+
+function logWorkout(muscle){
+
+let date=new Date().toISOString().split("T")[0]
+
+history.push({
+muscle:muscle,
+date:date
+})
+
+localStorage.setItem("workoutHistory",JSON.stringify(history))
+
+render()
+
+}
+
+/* RENDER */
+
+function render(){
+
+renderHistory()
+renderRecovery()
+
+}
+
+/* HISTORY */
+
+function renderHistory(){
+
+let div=document.getElementById("history")
+
+div.innerHTML=""
+
+history.slice().reverse().forEach(h=>{
+div.innerHTML+=h.date+" - "+h.muscle+"<br>"
+})
+
+}
+
+/* RECOVERY */
+
+function renderRecovery(){
+
+let muscles=["Chest","Back","Legs","Shoulders","Arms","Abs"]
+
+let container=document.getElementById("recovery")
+
+container.innerHTML=""
+
+muscles.forEach(m=>{
+
+let last=history.slice().reverse().find(x=>x.muscle==m)
+
+let status="Ready"
+let cls="ready"
+
+if(last){
+
+let lastDate=new Date(last.date)
+let now=new Date()
+
+let diff=(now-lastDate)/(1000*60*60*24)
+
+if(diff < restDays[m]){
+
+let left=Math.ceil(restDays[m]-diff)
+
+status="Recovering ("+left+"d)"
+
+cls="recover"
+
+}
+
+}
+
+container.innerHTML+=`
+<div class="row">
+<span>${m}</span>
+<span class="${cls}">${status}</span>
+</div>
+`
+
+})
+
+}
+
+/* MOBILE TAP LOGIC */
+
+function toggleCard(card,e){
+
+if(window.innerWidth < 800){
+
+if(!card.classList.contains("active")){
+e.preventDefault()
+card.classList.add("active")
+}else{
+card.classList.remove("active")
+}
+
+}
+
+}
+
+render()
+
+</script>
+
+</body>
+</html>
